@@ -89,7 +89,7 @@
 				<div class="input-group">
 					<div class="label-row">
 						<label for="password" class="label">Password</label>
-						<a href="/forgot-password" class="forgot-link">Forgot password?</a>
+						<span class="forgot-link">Forgot password?</span>
 					</div>
 					<input
 						type="password"
@@ -112,7 +112,7 @@
 				</button>
 
 				<p class="footer-text">
-					Need a specialized enterprise account? <a href="/contact" class="contact-link">Contact Sales</a>
+					Need a specialized enterprise account? <span class="contact-link">Contact Sales</span>
 				</p>
 			</form>
 		</div>
