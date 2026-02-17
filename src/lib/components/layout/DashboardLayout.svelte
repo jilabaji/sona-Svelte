@@ -3,38 +3,14 @@
 	let { children } = $props();
 </script>
 
-<div class="dashboard-layout">
+<div class="flex min-h-screen bg-slate-950 text-slate-200 selection:bg-indigo-500/30">
+	<!-- Sidebar: Fixed width on desktop -->
 	<Sidebar />
-	<main class="main-content">
-		{@render children()}
+	
+	<!-- Main Content Area -->
+	<main class="flex-1 lg:ml-64 transition-all duration-300 min-h-screen overflow-x-hidden">
+		<div class="max-w-[1600px] mx-auto p-4 sm:p-6 lg:p-10">
+			{@render children()}
+		</div>
 	</main>
 </div>
-
-<style>
-	.dashboard-layout {
-		display: flex;
-		min-height: 100vh;
-		background: linear-gradient(135deg, #020617 0%, #0b1220 50%, #0f172a 100%);
-		position: relative;
-	}
-
-	.main-content {
-		flex-grow: 1;
-		margin-left: 240px;
-		padding: 32px 48px;
-		min-height: 100vh;
-	}
-
-	@media (max-width: 1024px) {
-		.main-content {
-			margin-left: 80px;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.main-content {
-			margin-left: 0;
-			padding: 24px;
-		}
-	}
-</style>

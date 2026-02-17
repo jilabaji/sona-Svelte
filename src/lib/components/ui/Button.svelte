@@ -20,7 +20,7 @@
     }: Props = $props();
 
     const variants = {
-        primary: 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-[0_4px_15px_rgba(99,102,241,0.3)] hover:shadow-[0_8px_25px_rgba(99,102,241,0.5)] hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0',
+        primary: 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg hover:shadow-indigo-500/20 hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0',
         secondary: 'bg-slate-400/10 text-slate-200 backdrop-blur-md border border-slate-400/20 hover:bg-slate-400/20 hover:border-slate-400/30',
         ghost: 'bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-400/5'
     };
@@ -29,7 +29,7 @@
 <button
     {type}
     disabled={disabled || loading}
-    class="inline-flex items-center justify-center h-[48px] px-6 rounded-xl font-semibold text-base transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed w-full relative overflow-hidden gap-2 {variants[variant]} {className}"
+    class="inline-flex items-center justify-center h-12 px-6 rounded-xl font-bold text-sm transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed w-full relative overflow-hidden gap-2 {variants[variant]} {className}"
     {onclick}
 >
     {#if loading}

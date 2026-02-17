@@ -17,18 +17,24 @@
 </svelte:head>
 
 <AuthLayout>
-    <Card>
-        <h2 class="text-[1.75rem] font-bold mb-2 text-slate-100 italic tracking-tight">Verify OTP</h2>
-        <p class="text-[15px] text-slate-400 mb-8 leading-relaxed">Enter the 6-digit code sent to your email.</p>
+    <Card className="w-full max-w-[420px]">
+        <div class="mb-10 text-center sm:text-left">
+            <h2 class="text-2xl font-bold text-white tracking-tight">Verify OTP</h2>
+            <p class="text-sm text-slate-400 mt-2">Enter the 6-digit code sent to your email.</p>
+        </div>
 
-        <form onsubmit={(e) => { e.preventDefault(); handleVerify(); }} class="flex flex-col gap-2">
-            <OtpInput bind:value={otpValue} />
-            <Button type="submit">Verify Code</Button>
+        <form onsubmit={(e) => { e.preventDefault(); handleVerify(); }} class="space-y-6">
+            <div class="space-y-3">
+                <label class="text-sm font-semibold text-slate-400 pl-1 uppercase tracking-wider text-[11px]">Security Code</label>
+                <OtpInput bind:value={otpValue} />
+            </div>
+            
+            <Button type="submit" className="mt-4">Verify Code</Button>
         </form>
 
         <div class="text-center mt-8">
-            <p class="text-sm text-slate-500">
-                Didn't receive the code? <span class="text-indigo-400 font-semibold cursor-pointer hover:text-indigo-300 transition-colors">Resend OTP</span>
+            <p class="text-sm font-medium text-slate-500">
+                Didn't receive the code? <span class="text-indigo-400 font-bold cursor-pointer hover:text-indigo-300 transition-colors ml-1">Resend OTP</span>
             </p>
         </div>
     </Card>

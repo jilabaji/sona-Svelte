@@ -38,7 +38,7 @@
     };
 </script>
 
-<div class="flex justify-center gap-2 sm:gap-3 mb-8">
+<div class="flex justify-between gap-2 sm:gap-3">
     {#each value as _, i}
         <input
             type="text"
@@ -49,7 +49,7 @@
             oninput={(e) => handleInput(e, i)}
             onkeydown={(e) => handleKeyDown(e, i)}
             onpaste={handlePaste}
-            class="w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] bg-slate-900 border border-white/5 rounded-xl text-center text-xl font-bold text-slate-200 outline-none transition-all duration-300 focus:border-indigo-500 focus:shadow-[0_0_0_4px_rgba(99,102,241,0.15)] focus:bg-slate-900/50"
+            class="w-10 h-12 sm:w-12 sm:h-12 bg-slate-900 border border-white/5 rounded-lg text-center text-lg font-bold text-slate-200 outline-none transition-all duration-300 focus:border-indigo-500 focus:shadow-[0_0_0_4px_rgba(99,102,241,0.15)] focus:bg-slate-900/50"
         />
     {/each}
 </div>
