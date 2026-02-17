@@ -4,7 +4,7 @@
 
     type Props = {
         isOpen: boolean;
-        onclose: () => void;
+        onclose?: () => void;
         title: string;
         subtitle?: string;
         children: any;
@@ -12,7 +12,15 @@
         width?: string;
     };
 
-    let { isOpen, onclose, title, subtitle, children, footer, width = "480px" }: Props = $props();
+    let { isOpen = $bindable(), onclose, title, subtitle, children, footer, width = "480px" }: Props = $props();
+
+    function handleClose() {
+        if (onclose) {
+            onclose();
+        } else {
+            isOpen = false;
+        }
+    }
 
     $effect(() => {
         if (isOpen) {
@@ -23,7 +31,7 @@
     });
 
     function handleKeydown(e: KeyboardEvent) {
-        if (e.key === 'Escape') onclose();
+        if (e.key === 'Escape' && isOpen) handleClose();
     }
 </script>
 
@@ -34,8 +42,8 @@
     <div 
         class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-2 sm:p-4"
         transition:fade={{ duration: 200 }}
-        onclick={onclose}
-        onkeydown={(e) => e.key === 'Enter' && onclose()}
+        onclick={handleClose}
+        onkeydown={(e) => e.key === 'Enter' && handleClose()}
         role="button"
         tabindex="-1"
     >
@@ -61,7 +69,7 @@
                 </div>
                 <button 
                     class="p-2 -mr-2 text-slate-500 hover:text-white hover:bg-white/5 rounded-xl transition-all" 
-                    onclick={onclose} 
+                    onclick={handleClose} 
                     aria-label="Close modal"
                 >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>

@@ -15,8 +15,8 @@
 
 <div class="w-full">
     <!-- Desktop Table View -->
-    <div class="hidden lg:block overflow-x-auto bg-slate-900/40 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-hidden">
-        <table class="w-full text-left border-collapse">
+    <div class="hidden lg:block overflow-x-auto bg-slate-900/40 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-hidden scrollbar-thin scrollbar-thumb-slate-700">
+        <table class="w-full text-left border-collapse min-w-[1000px]">
             <thead class="sticky top-0 z-10 bg-[#0f172a] shadow-sm">
                 <tr class="border-b border-white/5">
                     <th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest">Enterprise Info</th>

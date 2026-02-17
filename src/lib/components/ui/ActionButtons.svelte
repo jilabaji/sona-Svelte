@@ -7,11 +7,16 @@
     };
 
     let { onEdit, onDeactivate, onDelete, className = '' }: Props = $props();
+
+    function handleAction(e: MouseEvent, callback?: () => void) {
+        e.stopPropagation();
+        callback?.();
+    }
 </script>
 
 <div class="flex items-center gap-2 {className}">
     <button 
-        onclick={onEdit}
+        onclick={(e) => handleAction(e, onEdit)}
         class="p-2 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500 hover:text-white transition-all duration-200 group relative"
         aria-label="Edit Robot"
     >
@@ -20,7 +25,7 @@
     </button>
 
     <button 
-        onclick={onDeactivate}
+        onclick={(e) => handleAction(e, onDeactivate)}
         class="p-2 rounded-lg bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-white transition-all duration-200 group relative"
         aria-label="Deactivate Robot"
     >
@@ -29,7 +34,7 @@
     </button>
 
     <button 
-        onclick={onDelete}
+        onclick={(e) => handleAction(e, onDelete)}
         class="p-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white transition-all duration-200 group relative"
         aria-label="Delete Robot"
     >

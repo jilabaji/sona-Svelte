@@ -1,6 +1,7 @@
 <script lang="ts">
     import testImg from '$lib/assets/test.jpg';
     import { fade } from 'svelte/transition';
+    import { toggleSidebar } from '$lib/stores/ui.store';
 
     type Props = {
         title?: string;
@@ -10,11 +11,21 @@
     let { title = "Dashboard", children }: Props = $props();
 </script>
 
-<header class="sticky top-0 z-40 w-full bg-slate-950/80 backdrop-blur-xl border-b border-white/5 px-4 sm:px-6 lg:px-10">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between sm:h-20 py-4 sm:py-0 gap-4 sm:gap-0">
+<header class="sticky top-0 z-40 w-full bg-slate-950/80 backdrop-blur-xl border-b border-white/5 px-4 sm:px-6 lg:px-10 overflow-hidden">
+    <div class="max-w-[1800px] mx-auto flex flex-col sm:flex-row sm:items-center justify-between sm:h-20 py-4 sm:py-0 gap-4 sm:gap-0 min-w-0">
         <!-- Row 1: Title & Mobile Profile Actions -->
         <div class="flex items-center justify-between w-full sm:w-auto">
-            <h2 class="text-lg font-bold text-white tracking-tight" in:fade>{title}</h2>
+            <div class="flex items-center gap-4">
+                <!-- Mobile Hamburger -->
+                <button 
+                    onclick={toggleSidebar}
+                    class="lg:hidden p-2 -ml-2 text-slate-400 hover:text-white transition-colors"
+                    aria-label="Open navigation menu"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
+                </button>
+                <h2 class="text-lg font-bold text-white tracking-tight" in:fade>{title}</h2>
+            </div>
             
             <!-- Mobile User Actions (Bell + Avatar) -->
             <div class="flex sm:hidden items-center gap-3">
