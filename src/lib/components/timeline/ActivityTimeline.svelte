@@ -28,6 +28,14 @@
         <div 
             class="relative pl-10 group {event.onclick ? 'cursor-pointer' : ''}"
             onclick={event.onclick}
+            onkeydown={(e) => {
+                if (event.onclick && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    event.onclick();
+                }
+            }}
+            role={event.onclick ? "button" : "none"}
+            tabindex={event.onclick ? 0 : -1}
         >
             <!-- Timeline Dot -->
             <div class="absolute left-0 top-1.5 w-5 h-5 rounded-full border-4 border-slate-900 z-10 {colors[event.type || 'info']} shadow-[0_0_10px_rgba(0,0,0,0.5)] group-hover:scale-125 transition-transform duration-300"></div>

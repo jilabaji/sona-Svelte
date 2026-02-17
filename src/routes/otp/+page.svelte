@@ -25,7 +25,7 @@
 
         <form onsubmit={(e) => { e.preventDefault(); handleVerify(); }} class="space-y-6">
             <div class="space-y-3">
-                <label class="text-sm font-semibold text-slate-400 pl-1 uppercase tracking-wider text-[11px]">Security Code</label>
+                <span class="block text-sm font-semibold text-slate-400 pl-1 uppercase tracking-wider text-[11px]">Security Code</span>
                 <OtpInput bind:value={otpValue} />
             </div>
             
