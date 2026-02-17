@@ -35,23 +35,23 @@
 
 <div class="flex flex-col space-y-2 w-full {className}">
     {#if label}
-        <label for={id || name} class="text-sm font-semibold text-slate-400 pl-1">{label}</label>
+        <label for={id || name} class="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">{label}</label>
     {/if}
     
-    <div class="relative flex items-center bg-slate-900 border border-white/5 rounded-lg transition-all duration-300 focus-within:border-indigo-500 focus-within:shadow-[0_0_0_4px_rgba(99,102,241,0.15)] h-12">
+    <div class="relative flex items-center bg-slate-800 border border-slate-700/50 rounded-xl transition-all duration-300 focus-within:border-purple-500/50 focus-within:ring-2 focus-within:ring-purple-500/20 shadow-sm h-12">
         <input
             id={id || name}
             {name}
             type={inputType}
             {placeholder}
             bind:value={value}
-            class="w-full h-full px-4 bg-transparent border-none outline-none text-slate-200 text-sm placeholder:text-slate-600 rounded-lg"
+            class="w-full h-full px-4 bg-transparent border-none outline-none text-white text-sm sm:text-base placeholder:text-slate-600 rounded-xl"
         />
         
         {#if showPasswordIcon}
             <button 
                 type="button" 
-                class="flex items-center px-4 bg-transparent border-none text-slate-600 hover:text-slate-400 transition-colors cursor-pointer"
+                class="flex items-center px-4 bg-transparent border-none text-slate-500 hover:text-slate-300 transition-colors cursor-pointer"
                 onclick={togglePassword}
             >
                 {#if isPasswordVisible}
@@ -62,4 +62,7 @@
             </button>
         {/if}
     </div>
+    {#if error}
+        <p class="text-[10px] font-bold text-red-500 pl-1 uppercase tracking-tight">{error}</p>
+    {/if}
 </div>

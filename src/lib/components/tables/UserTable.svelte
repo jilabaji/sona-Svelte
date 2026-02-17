@@ -1,192 +1,76 @@
 <script lang="ts">
-	import testImg from '$lib/assets/test.jpg';
+    import testImg from '$lib/assets/test.jpg';
+    import StatusBadge from '../ui/StatusBadge.svelte';
+    import RoleBadge from '../ui/RoleBadge.svelte';
+    import ActionButtons from '../ui/ActionButtons.svelte';
+    import UserCard from '../cards/UserCard.svelte';
 
-	const users = [
-		{ id: 1, name: 'John Doe', email: 'john@example.com', role: 'Master Admin', status: 'Active' },
-		{ id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'Enterprise Admin', status: 'Active' },
-		{ id: 3, name: 'Bob Wilson', email: 'bob@example.com', role: 'CXO', status: 'Inactive' }
-	];
-
-	function getStatusClass(status: string) {
-		return status === 'Active' ? 'status-active' : 'status-inactive';
-	}
+    const users = [
+        { id: 1, name: 'Alex Rivera', email: 'alex.rivera@robocare.sh', role: 'MASTER ADMIN', enterprise: 'RoboCare HQ', status: 'ACTIVE', lastLogin: '2 mins ago' },
+        { id: 2, name: 'Sarah Jenkins', email: 's.jenkins@stmarys.co.uk', role: 'ENTERPRISE ADMIN', enterprise: 'St. Mary Care Home', status: 'ACTIVE', lastLogin: '45 mins ago' },
+        { id: 3, name: 'Michael Chen', email: 'm.chen@greenvalley.com', role: 'STAFF', enterprise: 'Green Valley Res.', status: 'PENDING', lastLogin: 'Invited' },
+        { id: 4, name: 'Emma Watson', email: 'emma@sunsetheights.au', role: 'VIEWER', enterprise: 'Sunset Heights', status: 'INACTIVE', lastLogin: '2 days ago' },
+        { id: 5, name: 'David Miller', email: 'd.miller@heritage.ca', role: 'STAFF', enterprise: 'Heritage Manor', status: 'ACTIVE', lastLogin: '5 mins ago' },
+        { id: 6, name: 'Sophie Taylor', email: 'sophie.t@clinic.de', role: 'VIEWER', enterprise: 'Oak Ridge Clinic', status: 'ACTIVE', lastLogin: '1 hour ago' }
+    ];
 </script>
 
-<div class="table-container">
-	<div class="table-card">
-		<table class="user-table">
-			<thead>
-				<tr>
-					<th>User Info</th>
-					<th>Role</th>
-					<th>Status</th>
-					<th class="text-right">Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each users as user}
-					<tr class="user-row">
-						<td>
-							<div class="user-info-cell">
-								<div class="avatar-container">
-									<img src={testImg} alt={user.name} class="avatar" />
-								</div>
-								<div class="user-meta">
-									<span class="user-name">{user.name}</span>
-									<span class="user-email">{user.email}</span>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="role-badge">
-								{user.role}
-							</div>
-						</td>
-						<td>
-							<div class="status-badge {getStatusClass(user.status)}">
-								{user.status}
-							</div>
-						</td>
-						<td class="text-right">
-							<div class="action-links">
-								<button class="action-link edit">Edit</button>
-								<button class="action-link delete">Delete</button>
-							</div>
-						</td>
-					</tr>
-				{/each}
-			</tbody>
-		</table>
-	</div>
+<div class="w-full">
+    <!-- Desktop Table View -->
+    <div class="hidden lg:block overflow-x-auto bg-slate-900/40 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-hidden">
+        <table class="w-full text-left border-collapse">
+            <thead class="sticky top-0 z-10 bg-[#0f172a] shadow-sm">
+                <tr class="border-b border-white/5">
+                    <th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest">User Profile</th>
+                    <th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest">Access Role</th>
+                    <th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest">Enterprise</th>
+                    <th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest">Status</th>
+                    <th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest">Activity</th>
+                    <th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-white/[0.03]">
+                {#each users as user, i}
+                    <tr class="group {i % 2 === 0 ? 'bg-transparent' : 'bg-white/[0.01]'} hover:bg-purple-500/[0.03] transition-all duration-300">
+                        <td class="px-6 py-5">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full border border-white/10 group-hover:border-purple-500/50 transition-colors shrink-0 overflow-hidden bg-slate-800">
+                                    <img src={testImg} alt={user.name} class="w-full h-full object-cover" />
+                                </div>
+                                <div class="flex flex-col gap-0.5">
+                                    <span class="text-[14px] font-bold text-slate-200 group-hover:text-purple-300 transition-colors tracking-tight">{user.name}</span>
+                                    <span class="text-[11px] font-medium text-slate-500">{user.email}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-5">
+                            <RoleBadge role={user.role as any} />
+                        </td>
+                        <td class="px-6 py-5">
+                            <span class="text-sm font-bold text-slate-400">{user.enterprise}</span>
+                        </td>
+                        <td class="px-6 py-5">
+                            <StatusBadge status={user.status as any} />
+                        </td>
+                        <td class="px-6 py-5">
+                            <div class="flex flex-col gap-0.5">
+                                <span class="text-[13px] font-bold text-slate-300">{user.lastLogin}</span>
+                                <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest leading-none">Last Log</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-5">
+                            <ActionButtons className="justify-end scale-90" />
+                        </td>
+                    </tr>
+                {/each}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Mobile Card View -->
+    <div class="lg:hidden flex flex-col gap-4">
+        {#each users as user}
+            <UserCard {user} avatar={testImg} />
+        {/each}
+    </div>
 </div>
-
-<style>
-	.table-container {
-		width: 100%;
-		animation: fadeInUp 0.5s ease-out;
-	}
-
-	@keyframes fadeInUp {
-		from { opacity: 0; transform: translateY(10px); }
-		to { opacity: 1; transform: translateY(0); }
-	}
-
-	.table-card {
-		background: #0f172a;
-		border: 1px solid rgba(255, 255, 255, 0.05);
-		border-radius: 20px;
-		padding: 24px;
-		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-	}
-
-	.user-table {
-		width: 100%;
-		border-collapse: collapse;
-		text-align: left;
-	}
-
-	.user-table th {
-		padding: 16px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		color: #64748b;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-	}
-
-	.user-row {
-		border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-		transition: all 0.2s ease;
-	}
-
-	.user-row:hover {
-		background: rgba(255, 255, 255, 0.02);
-	}
-
-	.user-row td {
-		padding: 20px 16px;
-	}
-
-	.user-info-cell {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-	}
-
-	.avatar-container {
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-		overflow: hidden;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-	}
-
-	.avatar {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-
-	.user-meta {
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-	}
-
-	.user-name {
-		font-size: 0.9375rem;
-		font-weight: 600;
-		color: #e5e7eb;
-	}
-
-	.user-email {
-		font-size: 0.8125rem;
-		color: #64748b;
-	}
-
-	.role-badge {
-		font-size: 0.8125rem;
-		color: #94a3b8;
-		background: rgba(255, 255, 255, 0.05);
-		padding: 4px 10px;
-		border-radius: 6px;
-		width: fit-content;
-	}
-
-	.status-badge {
-		font-size: 0.75rem;
-		font-weight: 700;
-		padding: 6px 12px;
-		border-radius: 99px;
-		width: fit-content;
-	}
-
-	.status-active { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
-	.status-inactive { background: rgba(255, 255, 255, 0.05); color: #64748b; }
-
-	.action-links {
-		display: flex;
-		gap: 16px;
-		justify-content: flex-end;
-	}
-
-	.action-link {
-		background: transparent;
-		border: none;
-		font-size: 0.8125rem;
-		font-weight: 600;
-		cursor: pointer;
-		padding: 0;
-		transition: opacity 0.2s;
-	}
-
-	.action-link:hover {
-		opacity: 0.8;
-	}
-
-	.edit { color: #6366f1; }
-	.delete { color: #ef4444; }
-
-	.text-right { text-align: right; }
-</style>

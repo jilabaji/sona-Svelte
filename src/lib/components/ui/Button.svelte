@@ -22,6 +22,7 @@
     const variants = {
         primary: 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg hover:shadow-indigo-500/20 hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0',
         secondary: 'bg-slate-400/10 text-slate-200 backdrop-blur-md border border-slate-400/20 hover:bg-slate-400/20 hover:border-slate-400/30',
+        outline: 'bg-transparent border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white',
         ghost: 'bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-400/5'
     };
 </script>

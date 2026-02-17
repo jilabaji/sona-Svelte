@@ -1,6 +1,5 @@
 <script lang="ts">
 	import DashboardLayout from '$lib/components/layout/DashboardLayout.svelte';
-	import Header from '$lib/components/layout/Header.svelte';
 	import BarChart from '$lib/components/charts/BarChart.svelte';
 	import LineChart from '$lib/components/charts/LineChart.svelte';
 	import Card from '$lib/components/ui/Card.svelte';
@@ -42,9 +41,7 @@
 	<title>Dashboard | RoboCare Enterprise</title>
 </svelte:head>
 
-<DashboardLayout>
-	<Header />
-
+<DashboardLayout title="Operational Dashboard">
 	<div class="flex flex-col gap-8">
 		<!-- Page Header Info -->
 		<section class="flex flex-col gap-1">
@@ -86,7 +83,7 @@
             </div>
 		</div>
 
-        <!-- Recent Activity Feed (Optional addition for professional feel) -->
+        <!-- Recent Activity Feed -->
         <Card className="p-8">
             <div class="flex items-center justify-between mb-8">
                 <h3 class="text-lg font-bold text-white">Recent Fleet Activity</h3>
